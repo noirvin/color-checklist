@@ -20,33 +20,60 @@ def printChecklist():
         i+=1
 def mark_completed(index):
     update(index, "√"+checklist[index])
+def mark_unchecked(index):
+    update(index, checklist[index])
 
 def select(function_code):
+    function_code = function_code.lower()
     # Create item
-    if function_code == "C":
+    if function_code == "c":
         input_item = user_input("Input item:")
         create(input_item)
 
     # Read item
-    elif function_code == "R":
+    elif function_code == "r":
         item_index = user_input("Index Number?")
 
-        read(item_index)
+        try:
+            read(item_index)
+        except:
+            print("That is not a valid index")
 
     # Print all items
-    elif function_code == "P":
+    elif function_code == "p":
         list_all_items()
 
-    elif function_code == "Q":
-        return false
+    elif function_code == "q":
+        return False
+
     #modify index specified item
-    elif function_code == "U":
+    elif function_code == "u":
         itemIndex = user_input("input index")
         updatedItem = user_input("input new item")
-        update(itemIndex,updatedItem)
-    elif function_code == "D":
+        try:
+            update(itemIndex,updatedItem)
+        except:
+            print("That is not a valid index")
+
+    elif function_code == "d":
         itemIndex = user_input("Enter index")
-        destroy(itemIndex)    
+        try:
+            destroy(itemIndex)
+        except:
+            print("That is not a valid index")
+    #add checkmark to item
+    elif function_code == "m":
+        itemIndex = user_input("Enter Index")
+        try:
+            mark_completed(itemIndex)
+        except:
+            print("That is not a valid index")
+    elif function_code == "o":
+        itemIndex = user_input("Enter Index")
+        try:
+            mark_unchecked(itemIndex)
+        except:
+            print("That is not a valid index")
     # Catch all
     else:
         print("Unknown Option")
@@ -74,9 +101,9 @@ def test():
     user_value = user_input("Please Enter a value:")
     print(user_value)
 
-test()
+
 running = True
 while running:
     selection = user_input(
-        "Press C to add to list, R to Read from list and P to display list")
+        "Press C to add to list, R to Read from list and P to display list, D to remove from list, U to update the item, P to list all items, m to mark an item as checked, O to uncheck, and Q to quit")
     running = select(selection)
