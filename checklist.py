@@ -41,7 +41,7 @@ def select(function_code):
 
     # Print all items
     elif function_code == "p":
-        list_all_items()
+        printChecklist()
 
     elif function_code == "q":
         return False
