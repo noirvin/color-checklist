@@ -5,7 +5,7 @@ def create(item):
     checklist.append(item)
 # read
 def read(index):
-    return checklist[index]
+    return checklist[int(index)]
 #update
 def update(index, item):
     checklist[index] = item
@@ -36,6 +36,7 @@ def select(function_code):
     # Print all items
     elif function_code == "P":
         list_all_items()
+        
 
     # Catch all
     else:
@@ -60,8 +61,12 @@ def test():
     printChecklist()
     select("R")
     printChecklist()
+    user_value = user_input("Please Enter a value:")
+    print(user_value)
+
 test()
-
-
-
-print("Arvin")
+running = True
+while running:
+    selection = user_input(
+        "Press C to add to list, R to Read from list and P to display list")
+    select(selection)
