@@ -21,7 +21,7 @@ def printChecklist():
 def mark_completed(index):
     update(index, "√"+checklist[index])
 def mark_unchecked(index):
-    update(index, checklist[index])
+    checklist[index].replace("√", "")
 
 def select(function_code):
     function_code = function_code.lower()
@@ -41,7 +41,8 @@ def select(function_code):
         item_index = user_input("Index Number?")
 
         try:
-            read(item_index)
+            item = read(int(item_index))
+            print(item)
             return True
         except:
             print("That is not a valid index")
@@ -52,7 +53,7 @@ def select(function_code):
             printChecklist()
             return True
         except:
-            print("That is not a valid character")    
+            print("That is not a valid character")
 
     elif function_code == "q":
         return False
@@ -62,7 +63,7 @@ def select(function_code):
         itemIndex = user_input("input index")
         updatedItem = user_input("input new item")
         try:
-            update(itemIndex,updatedItem)
+            update(int(itemIndex),updatedItem)
             return True
         except:
             print("That is not a valid index")
@@ -70,25 +71,28 @@ def select(function_code):
     elif function_code == "d":
         itemIndex = user_input("Enter index")
         try:
-            destroy(itemIndex)
+            destroy(int(itemIndex))
             return True
         except:
             print("That is not a valid index")
+            return True
     #add checkmark to item
     elif function_code == "m":
         itemIndex = user_input("Enter Index")
         try:
-            mark_completed(itemIndex)
+            mark_completed(int(itemIndex))
             return True
         except:
             print("That is not a valid index")
+            return True
     elif function_code == "o":
         itemIndex = user_input("Enter Index")
         try:
-            mark_unchecked(itemIndex)
+            mark_unchecked(int(itemIndex))
             return True
         except:
             print("That is not a valid index")
+            return True
     # Catch all
     else:
         print("Unknown Option")
