@@ -27,8 +27,14 @@ def select(function_code):
     function_code = function_code.lower()
     # Create item
     if function_code == "c":
-        input_item = user_input("Input item:")
-        create(input_item)
+
+        try:
+
+            input_item = user_input("Input item:")
+            create(input_item)
+            return True
+        except:
+            print("That is not a valid charater")
 
     # Read item
     elif function_code == "r":
@@ -36,12 +42,17 @@ def select(function_code):
 
         try:
             read(item_index)
+            return True
         except:
             print("That is not a valid index")
 
     # Print all items
     elif function_code == "p":
-        printChecklist()
+        try:
+            printChecklist()
+            return True
+        except:
+            print("That is not a valid character")    
 
     elif function_code == "q":
         return False
@@ -52,6 +63,7 @@ def select(function_code):
         updatedItem = user_input("input new item")
         try:
             update(itemIndex,updatedItem)
+            return True
         except:
             print("That is not a valid index")
 
@@ -59,6 +71,7 @@ def select(function_code):
         itemIndex = user_input("Enter index")
         try:
             destroy(itemIndex)
+            return True
         except:
             print("That is not a valid index")
     #add checkmark to item
@@ -66,18 +79,20 @@ def select(function_code):
         itemIndex = user_input("Enter Index")
         try:
             mark_completed(itemIndex)
+            return True
         except:
             print("That is not a valid index")
     elif function_code == "o":
         itemIndex = user_input("Enter Index")
         try:
             mark_unchecked(itemIndex)
+            return True
         except:
             print("That is not a valid index")
     # Catch all
     else:
         print("Unknown Option")
-        return true
+        return True
 
 def user_input(prompt):
     user_input = input(prompt)
